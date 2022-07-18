@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Ingredient} from "../shared/ingredient.model";
 import {ShoppingListService} from "./shopping-list.service";
 import {Subscription} from "rxjs";
+import {compareNumbers} from "@angular/compiler-cli/src/version_helpers";
 
 @Component({
   selector: 'app-shopping-list',
@@ -13,6 +14,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy{
   private igChangeSub: Subscription;
 
   constructor(private shoppingListService: ShoppingListService) {
+  }
+
+  onEditItem(index: number){
+    this.shoppingListService.startedEditing.next(index);
   }
 
   ngOnInit(): void {
